@@ -1,0 +1,49 @@
+<!--this is the base html the file that will be the parent for all of the pages 
+الشكل الاساسي لباقي الصفحات-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    {% block extra_css %}{% endblock %}
+    {% endblock %}
+    <title>{% block title %}MAWI store{% endblock %}</title>
+</head>
+<header>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">MWAI</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('pages.home') }}">Home</a></li>
+                <li><select id="admin" {% if not isadmin %} style="display: none;" {% endif %}>
+                    <option value="" disabled selected>Admin</option>
+                    <option value="add">add</option>
+                    <option value="delete">delete</option>
+                </select></li>
+                <li><a href="{{url_for('pages.carts')}}">cart</a></li>
+                <li><a href="{{url_for('pages.aboutus')}}">About us</a></li>
+                <li><a href="{{url_for('pages.sign')}}">logout</a></li>
+                
+            </ul>
+        </div>
+    </nav>
+</header>
+<body>
+    
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        
+        <h6>all copy rights for ahram canadian university</h6>
+    </footer>
+</body>
+
+{% block script %}{% endblock %}
+
+</html>

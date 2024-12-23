@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='hstyles.css') }}"> {% endblock %}
+
+{% block title %}Homepage {% endblock %}
+{% block content %}
+<div class="container">
+    <main class="main-content">
+        <div class="banner" id="banner">
+            <h1>Welcome To Your destination for all your shopping needs</h1>
+            <h2>GET UP TO 50% OFF!</h2>
+        </div>
+        <div class="carousel">
+            <div class="carousel-images">
+                <div class="carousel-image">
+                    <img src="https://i.pinimg.com/736x/51/ad/03/51ad0385ded25f9af25f3252067e002e.jpg" alt="Featured Product 1">
+                </div>
+                <div class="carousel-image">
+                    <img src="https://i.pinimg.com/736x/38/a8/48/38a84809f93c4edf419d9eb1daaa1d71.jpg" alt="Featured Product 2">
+                </div>
+                <div class="carousel-image">
+                    <img src="https://i.pinimg.com/736x/ac/e4/11/ace4113db5bc3a4bfedc4b270b150ae9.jpg" alt="Featured Product 3">
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <button class="carousel-button prev">&#10094;</button>
+                <button class="carousel-button next">&#10095;</button>
+            </div>
+        </div>
+<div class="items">
+    {% for types, type in products.items() %} <!-- hna types feeha 2l key value bta3 2l products w type feeha  2l dictionry dh b2a-->
+    <div class="grid">
+        <div class="category">
+            <div class="card" data-category="{{type.name}}">
+                <img src="{{ url_for('static', filename=type.img) }}" alt="{{type.name}}">
+                <p>{{type.name}}</p>
+                <button class="explore">Explore</button>
+            </div>
+        </div>
+    
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+{% block script %}
+
+<script src="{{ url_for('static', filename='home.js') }}"></script>
+{% endblock %}

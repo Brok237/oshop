@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='cart.css') }}">
+{% endblock %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+<div class="cart-container">
+    {% if items %}
+        {% for product in items %}
+        <div class="cart-item">
+            <img src="{{ url_for('static', filename='uploads/' + product.img) }}" alt="{{ product.name }}" class="cart-product-image">
+            <div class="cart-product-details">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p>Price: ${{ product.price }}</p>
+            </div>
+            <button class="delete-item" data-product-id="{{ product.id }}">Delete</button>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+<button id="checkout">checkout</button>
+
+{% endblock %}
+{% block script %}
+
+<script src="{{ url_for('static', filename='cart.js') }}"></script>
+{% endblock %}

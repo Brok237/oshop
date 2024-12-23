@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='products.css') }}"> {% endblock %}
+{% block title %}Products{% endblock %}
+
+{% block content %}
+<div class="product-container">
+    {% for product in products['items'] %}<!--  hna m4 h7tag 2hold 2l key l2ny kda kda ba3et dictionry wa7da bs -->
+    <div class="product-card">
+        <img src="{{ url_for('static', filename='uploads/' + product.img) }}" alt="{{ product.name }}" class="product-image">
+        <div class="product-details">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <p>Price: ${{ product.price }}</p>
+            <button class="add-to-cart" pid="{{ product.id }}" pname="{{ products['name'] }}"><!-- zawdt attributes mn 3andy bthold 2l id w 2l name bta3 2l product-->
+                Add to Cart
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', function() {
+        const productId = this.getAttribute('pid');
+        const productname = this.getAttribute('pname');
+
+        
+        fetch('/products', {// ha fetch 2l api 2l post api fe 2l flask
+            method: 'POST',// method type
+            headers: {// header 34an 23rf 2ny hb3t key w 2l value bta3tha
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `id=${productId}&type=${productname}`,// 2ldata 2ll hb3tha 
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Product added to cart');
+            } else {
+                alert('Failed to add product to cart');
+            }
+        })
+        
+    });
+});
+</script>
+{% endblock %}

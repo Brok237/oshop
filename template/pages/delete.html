@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Delete {% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='delete.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h1>Delete Product</h1>
+    <form id="delete-form" method="POST">
+        <label for="type">Select Product Category:</label>
+        <select name="type" id="type">
+            {% for category in products %}<!-- 34an 2geeb taype 2l product 2ll3ayez 24elo-->
+                <option value="{{ category }}">{{ products[category]['name'] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="id">Select Product to Delete:</label>
+        <select name="id" id="id">
+            {% for category in products %} <!-- mn kol type lproduct-->
+                {% for item in products[category]['items'] %} <!-- h3rd 2l products 2ll feeh-->
+                    <option value="{{ item['id'] }}">{{ item['name'] }}</option>
+                {% endfor %}
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Delete Product</button>
+    </form>
+{% endblock %}
+
+{% block script %}
+<script>
+    document.getElementById("delete-form").onsubmit = function(e) { // 2l delete button hwa 2l submint bta3y 
+        e.preventDefault();
+        const formData = new FormData(document.getElementById("delete-form"));// ha5ed 2l data  mn 2l form
+        fetch('/delete', {// h48l  2l delete api mn 2l flask
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json()) // h7awel 2l response l json
+        .then(data => {
+            if (data.success) {// law 2l data 2ll fe 2l response  ng7t ya3ny 2t3mlo delete
+                alert(data.message);// h2lo 24ta mas7tholk
+                location.reload();  // h3ml relod 34an y5tfy mn 2l list
+            } else {
+                alert(data.message);// law fe error y2lk fe error
+            }
+        })
+        
+    }
+</script>
+{% endblock %}

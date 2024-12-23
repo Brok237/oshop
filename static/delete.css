@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffe4e1; /* Light pink background */
+    color: #333; /* Standard text color */
+    margin-top: 5%;
+    padding: 50px 0 0 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form#delete-form {
+    background-color: #fff0f5; /* Light lavender blush background for the form */
+    border: 1px solid #ffc0cb; /* Soft pink border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 20px 30px;
+    width: 400px;
+    box-sizing: border-box;
+}
+
+form#delete-form h1 {
+    color: #d87093; /* Pale violet-red for the title */
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 24px;
+}
+
+form#delete-form label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #8b0000; /* Dark red for labels */
+}
+
+form#delete-form select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+form#delete-form button {
+    display: block;
+    width: 100%;
+    background-color: #ff69b4; /* Hot pink button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form#delete-form button:hover {
+    background-color: #ff1493; /* Deep pink on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    form#delete-form {
+        width: 90%;
+        padding: 15px 20px;
+    }
+
+    form#delete-form h1 {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    form#delete-form label {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+
+    form#delete-form select,
+    form#delete-form button {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    form#delete-form {
+        width: 95%;
+        padding: 10px 15px;
+    }
+
+    form#delete-form h1 {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    form#delete-form label {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    form#delete-form select,
+    form#delete-form button {
+        font-size: 12px;
+    }
+}

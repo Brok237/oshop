@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='add.css') }}">
+{% endblock %}
+{% block title %}ADD {% endblock %}
+
+{% block content %}
+<form id="addform" method="post" >
+    <h1>add items</h1>
+    <label> type: 
+        <select id="type" name="type">  
+            {% for types, type in products.items() %}
+                <option value="{{ types }}">{{ type.name }}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <label>name <input type="text" id="name" name="name" placeholder="enter product name"></label>
+    <label>description <input type="text" id="desc" name="description" placeholder="enter product description"></label>
+    <label>Price:<input type="number" id="price" name="price" placeholder="enter product price"></label>
+    <label>image <input type="file" id="img" name="img"></label>
+    <button type="submit">ADD</button>
+</form>
+
+{% endblock %}
+{% block script %}
+<script src="{{ url_for('static', filename='add.js') }}"></script>
+{% endblock %}
